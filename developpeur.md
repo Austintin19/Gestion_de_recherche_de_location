@@ -1,4 +1,4 @@
-Description des parties du site, du point de vue du développeur 
+Description des parties du site, du point de vue développeur 
 
 **Page d'accueil :**
 1. **En-tête (Header)** : Comprend le logo du site, le menu de navigation, et éventuellement un bouton de connexion/inscription pour les utilisateurs.
