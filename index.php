@@ -21,11 +21,8 @@
 
     <style>
         body {
-            background-image: url();
-            background-repeat: no-repeat;
-            background-size: cover;
             color: #0f0f0f;
-            padding-top: 0px;
+            padding-top: 0;
         }
          .navbar-nav .nav-link:hover {
              color: #66afe9;
@@ -38,16 +35,45 @@
             background: linear-gradient(to top, #00416A, #E4E5E6);
             height: 100vh;
         }
+        .carousel-caption {
+            margin-bottom: 45vh;
+        }
+        footer {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
 
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        .text,.link {
+            color: #FFFFFF;
+        }
+        .link:hover {
+            color: #0b5ed7;
+        }
     </style>
 </head>
 <body>
 <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand mx-4" href="#"><img src="" width="50" alt="Logo Maison"></a>
-            <div class="d-none d-md-block">
-                <a  href="inscription.html" class="link link-light" >
+            <div class="d-none d-md-block mx-2">
+                <a  href="inscription.html" class="link link-light mx-4" >
                     <marquee direction="left" behavior="scroll" class="text-center">
                         Recherche de Location de maison
                     </marquee>
@@ -62,13 +88,14 @@
                         <a class="nav-link active" aria-current="page" href="#">Accueil</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="faq.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             FAQ
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Question 1</a>
-                            <a class="dropdown-item" href="#">Question 2</a>
-                            <a class="dropdown-item" href="#">Question 3</a>
+                            <a class="dropdown-item" href="faq.html#Q1">Qu'est-ce que la gestion de la recherche de location ?</a>
+                            <a class="dropdown-item" href="faq.html#Q2">Quels sont les avantages de la gestion de la recherche de location ?</a>
+                            <a class="dropdown-item" href="faq.html#Q3">Comment trouver un gestionnaire de recherche de location ?</a>
+                            <a class="dropdown-item" href="faq.html">More</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -88,9 +115,9 @@
 
 <script>
     window.addEventListener("scroll", function () {
-        const navbar = document.querySelector(".navbar");
-        if (window.scrollY > 80) {
-            navbar.style.backgroundColor = "#343a40"; // Fond dark lorsque l'utilisateur fait défiler la page
+        const navbar = document.querySelector("nav");
+        if (window.scrollY > 50) {
+            navbar.style.backgroundColor = "#191c1f"; // Fond dark lorsque l'utilisateur fait défiler la page
             navbar.style.boxShadow = "2px 2px 2px rgba(0, 0, 0, 0.5)";
         } else {
             navbar.style.backgroundColor = "transparent"; // Fond transparent par défaut
@@ -113,22 +140,22 @@
                 <div class="carousel-item active">
                    <img src="image/pexel%20(1).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
                     <div class="carousel-caption d-block">
-                        <h5>Trouvez la maison parfaite pour vos vacances ou vos séjours professionnels.</h5>
-                        <p>Nous vous proposons une large gamme de services pour vous aider à trouver la maison parfaite pour vos besoins</p>
+                        <h5 class="h1">Trouvez la maison parfaite pour vos vacances ou vos séjours professionnels.</h5>
+                        <p class="h6">Nous vous proposons une large gamme de services pour vous aider à trouver la maison parfaite pour vos besoins</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="image/pexel%20(3).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
                     <div class="carousel-caption d-block">
-                        <h5>Plus de 100 000 maisons disponibles</h5>
-                        <p>Des locations à tous les prix</p>
+                        <h5 class="h1">Plus de 100 000 maisons disponibles</h5>
+                        <p class="h6">Des locations à tous les prix</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="image/pexel%20(2).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
+                    <img src="image/pexel%20(4).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
                     <div class="carousel-caption d-block">
-                        <h5>Une équipe d'experts à votre service</h5>
-                        <p>Un service de paiement sécurisé</p>
+                        <h5 class="h1">Une équipe d'experts à votre service</h5>
+                        <p class="h6">Un service de paiement sécurisé</p>
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -243,17 +270,21 @@
 
     <section class="py-5 gradient-bg" id="section2">
         <div class="container mt-5">
-            <h1 class="text-center">Location de maison</h1>
+            <h1 class="text-center display-4">Location de maison</h1>
             <p class="lead text-center">Trouvez la maison parfaite pour vos vacances ou vos séjours professionnels.</p>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="image/maison1.jpg" width="100%" height="100%" alt="Image d'une maison">
+                    <img src="image/plusieur%20(2).jpg" class="img-fluid img-thumbnail" width="100%" height="80%" alt="Image d'une maison">
                 </div>
                 <div class="col-md-6">
                     <ul class="list-unstyled icon-list d-flex flex-column justify-content-between align-items-center">
-                        <li class="">Plus de 100 000 maisons disponibles</li>
-                        <li>Des locations à tous les prix</li>
-                        <li>Une équipe d'experts à votre service</li>
+                        <li class="fa fa-home mb-2"></li>
+                        <li class="mb-5">Plus de 100 000 maisons disponibles</li>
+                        <li class="fa fa-dollar-sign mb-2"></li>
+                        <li class="mb-5">Des locations à tous les prix</li>
+                        <li class="fa fa-user mb-2"></li>
+                        <li class="mb-5">Une équipe d'experts à votre service</li>
+                        <li class="fa fa-lock mb-2"></li>
                         <li>Un service de paiement sécurisé</li>
                     </ul>
                 </div>
@@ -311,6 +342,7 @@
                         <ul class="list-unstyled d-flex flex-column justify-content-between align-items-center text-left">
                             <li><a href="#" class="link">A propos</a></li>
                             <li><a href="#" class="link">Contact</a></li>
+                            <li><a href="#" class="faq.html">FQA</a></li>
                             <li><a href="#" class="link">Politique de confidentialité</a></li>
                             <li><a href="#" class="link">Conditions d'utilisation</a></li>
                         </ul>
@@ -319,49 +351,18 @@
                         <h4 class="mb-4">Suivez-nous</h4>
                         <ul class="list-unstyled social-links d-flex flex-column justify-content-between align-items-center text-justify">
                             <li><a href="#" class="link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                            <li><a href="#" class="link"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#" class="link"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
                             <li><a href="#" class="link"><i class="fab fa-instagram"></i> Instagram</a></li>
                             <li><a href="#" class="link"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                            <li><a href="#" class="link"><i class="fab fa-twitter"></i> Twitter</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4 d-flex flex-column justify-content-between align-items-center text-left">
+                    <div class="col-md-4 d-flex flex-column justify-content-between align-items-center">
                         <p class="text text-right mb-0">&copy; 2023 Location de maison. Tous droits réservés.</p>
                     </div>
                 </div>
             </div>
         </footer>
-
-
-
-        <style>
-            footer {
-                background-color: #f0f0f0;
-                padding: 20px;
-                text-align: center;
-            }
-
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-            }
-
-            li {
-                display: inline-block;
-                margin-right: 10px;
-            }
-
-            a {
-                color: #000;
-                text-decoration: none;
-            }
-            .text,.link {
-                color: #FFFFFF;
-            }
-            .text:hover,.link:hover {
-                color: #0b5ed7;
-            }
-        </style>
 
 </body>
 </html>
