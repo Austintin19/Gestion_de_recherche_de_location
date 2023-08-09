@@ -30,10 +30,15 @@
          .navbar-nav .nav-link:hover {
              color: #66afe9;
          }
-        .gradient-bg {
+        #section1 {
             background: linear-gradient(to bottom, #00416A, #E4E5E6);
             height: 100vh;
         }
+        #section2 {
+            background: linear-gradient(to top, #00416A, #E4E5E6);
+            height: 100vh;
+        }
+
     </style>
 </head>
 <body>
@@ -41,11 +46,13 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand mx-4" href="#"><img src="" width="50" alt="Logo Maison"></a>
-            <a  href="inscription.html">
-                <marquee direction="left" behavior="scroll" class="text-center">
-                    Recherche de Location de maison
-                </marquee>
-            </a>
+            <div class="d-none d-md-block">
+                <a  href="inscription.html" class="link link-light" >
+                    <marquee direction="left" behavior="scroll" class="text-center">
+                        Recherche de Location de maison
+                    </marquee>
+                </a>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -82,8 +89,8 @@
 <script>
     window.addEventListener("scroll", function () {
         const navbar = document.querySelector(".navbar");
-        if (window.scrollY > 50) {
-            navbar.style.backgroundColor = "#fff"; // Fond blanc lorsque l'utilisateur fait défiler la page
+        if (window.scrollY > 80) {
+            navbar.style.backgroundColor = "#343a40"; // Fond dark lorsque l'utilisateur fait défiler la page
             navbar.style.boxShadow = "2px 2px 2px rgba(0, 0, 0, 0.5)";
         } else {
             navbar.style.backgroundColor = "transparent"; // Fond transparent par défaut
@@ -95,7 +102,7 @@
 </header>
 <main>
 
-    <section class="py-5">
+    <section>
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -104,22 +111,22 @@
             </div>
             <div class="carousel-inner container-fluide">
                 <div class="carousel-item active">
-                   <img src="image/silde%20(1).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
-                    <div class="carousel-caption d-none d-md-block">
+                   <img src="image/pexel%20(1).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
+                    <div class="carousel-caption d-block">
                         <h5>Trouvez la maison parfaite pour vos vacances ou vos séjours professionnels.</h5>
                         <p>Nous vous proposons une large gamme de services pour vous aider à trouver la maison parfaite pour vos besoins</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="image/silde%20(2).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
-                    <div class="carousel-caption d-none d-md-block">
+                    <img src="image/pexel%20(3).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
+                    <div class="carousel-caption d-block">
                         <h5>Plus de 100 000 maisons disponibles</h5>
                         <p>Des locations à tous les prix</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="image/silde%20(3).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
-                    <div class="carousel-caption d-none d-md-block">
+                    <img src="image/pexel%20(2).jpg" class="d-block w-100" height="700" alt="Image d'une maison">
+                    <div class="carousel-caption d-block">
                         <h5>Une équipe d'experts à votre service</h5>
                         <p>Un service de paiement sécurisé</p>
                     </div>
@@ -134,7 +141,107 @@
                 </button>
         </div>
     </section>
-    <section class="py-5 gradient-bg">
+    <section class="py-5 gradient-bg" id="section1">
+        <div class="container">
+            <h2 class="text-center">Pourquoi choisir notre service de location</h2>
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div id="carouselFeature1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="image/vac1.jpg" alt="Image 1" class="d-block w-100 img-fluid">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="image/vac%20(1).jpg" alt="Image 2" class="d-block w-100 img-fluid">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="image/vac%20(2).jpg" alt="Image 3" class="d-block w-100 img-fluid">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselFeature1" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselFeature1" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <h4>Large sélection</h4>
+                        <p>Nous vous offrons un vaste choix de maisons de vacances dans différentes destinations.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div id="carouselFeature2" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="image/vac1.jpg" alt="Image 1" class="d-block w-100 img-fluid">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="image/vac%20(1).jpg" alt="Image 2" class="d-block w-100 img-fluid">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="image/vac%20(2).jpg" alt="Image 3" class="d-block w-100 img-fluid">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselFeature2" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselFeature2" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <h4>Prix compétitifs</h4>
+                        <p>Nos tarifs de location sont compétitifs et adaptés à tous les budgets.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div id="carouselFeature3" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="image/vac1.jpg" alt="Image 1" class="d-block w-100 img-fluid">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="image/vac%20(1).jpg" alt="Image 2" class="d-block w-100 img-fluid">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="image/vac%20(2).jpg" alt="Image 3" class="d-block w-100 img-fluid">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselFeature3" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselFeature3" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                    <h4>Service personnalisé</h4>
+                    <p>Notre équipe d'experts est à votre disposition pour vous aider à trouver la maison idéale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 banner ">
+        <div class="container text-center">
+            <h2 class="text-dark">Promotion spéciale</h2>
+            <p class="lead text-dark mb-4">Réservez dès maintenant et économisez 20% sur votre prochaine location de vacances !</p>
+            <a href="promotions" class="btn btn-primary btn-lg">Découvrir les offres &rarr;</a>
+        </div>
+    </section>
+
+
+    <section class="py-5 gradient-bg" id="section2">
         <div class="container mt-5">
             <h1 class="text-center">Location de maison</h1>
             <p class="lead text-center">Trouvez la maison parfaite pour vos vacances ou vos séjours professionnels.</p>
@@ -152,7 +259,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="maisons" class="btn btn-primary btn-lg">Voir nos maisons</a>
+                <a href="maisons" class="btn btn-outline-light btn-lg m-4">Voir nos maisons &rarr;</a>
             </div>
         </div>
     </section>
