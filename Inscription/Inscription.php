@@ -1,90 +1,45 @@
 <?php
-require("../Configs/config.php");
-// Définir les variables pour la validation
-$usernameErr = $passwordErr = $confirmPasswordErr = $prenomErr="";
-$username = $password = $confirmPassword = $prenom = "";
+global $conn;
+require('../Configs/config.php');
 
-// Fonction pour nettoyer les données entrées
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+// Définition des variables et initialisation des messages d'erreur
+$username = $prenom = $role = $date_inscription = $password = $confirmPassword = "";
+$usernameErr = $prenomErr = $roleErr = $dateInscriptionErr = $passwordErr = $confirmPasswordErr = "";
 
-// Vérifier si le formulaire a été soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Valider le nom d'utilisateur
-    if (empty($_POST["username"])) {
-        $usernameErr = "Le nom d'utilisateur est requis.";
-    } else {
-        $username = test_input($_POST["username"]);
-        // Vérifier si le nom d'utilisateur a au moins 4 caractères
-        if (strlen($username) < 4) {
-            $usernameErr = "Le nom d'utilisateur doit avoir au moins 4 caractères.";
-        }
-    }
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Validation et traitement des données du formulaire
 
-    // Valider le prénom
-    if (empty($_POST["prenom"])) {
-        $prenomErr = "Le prénom est requis.";
-    } else {
-        $prenom = test_input($_POST["prenom"]);
-    }
+    if (empty($usernameErr) && empty($prenomErr) && empty($roleErr) && empty($dateInscriptionErr) && empty($passwordErr) && empty($confirmPasswordErr)) {
+        // Hashage du mot de passe
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Valider le mot de passe
-    if (empty($_POST["password"])) {
-        $passwordErr = "Le mot de passe est requis.";
-    } else {
-        $password = test_input($_POST["password"]);
-        // Vérifier si le mot de passe a au moins 6 caractères
-        if (strlen($password) < 6) {
-            $passwordErr = "Le mot de passe doit avoir au moins 6 caractères.";
-        }
-    }
+        // Insertion des données dans la base de données
+        $stmt = $conn->prepare("INSERT INTO utilisateurs (nom, prenom, role, date_inscription, mot_de_passe) VALUES (:nom, :prenom, :role, :date_inscription, :mot_de_passe)");
+        $stmt->bindParam(':nom', $username);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':date_inscription', $date_inscription);
+        $stmt->bindParam(':mot_de_passe', $hashedPassword);
 
-    // Valider la confirmation du mot de passe
-    if (empty($_POST["confirmPassword"])) {
-        $confirmPasswordErr = "Veuillez confirmer le mot de passe.";
-    } else {
-        $confirmPassword = test_input($_POST["confirmPassword"]);
-        // Vérifier si le mot de passe et la confirmation du mot de passe correspondent
-        if ($password != $confirmPassword) {
-            $confirmPasswordErr = "La confirmation du mot de passe ne correspond pas.";
-        }
-    }
+        $date_inscription = $_POST['date_inscription'];
+        $role = $_POST['role'];
+        $username = $_POST['username'];
+        $prenom = $_POST['prenom'];
 
-    // Si les entrées sont valides, enregistrer les données dans la base de données
-    if (empty($usernameErr) && empty($passwordErr) && empty($confirmPasswordErr)) {
-        // Connexion à la base de données
-       
-
-        // Vérifier s'il existe déjà un utilisateur avec le même nom
-        $sql = "SELECT * FROM users WHERE nom = '$username' AND prenom = '$prenom'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $usernameErr = "Ce couple nom/prénom d'utilisateur est déjà utilisé.";
+        if ($stmt->execute()) {
+            // Redirection vers la page de connexion après l'inscription réussie
+            header("Location: connexion.php");
+            exit();
         } else {
-            // Insérer les données dans la table
-            $age = $_POST['age'];
-            $sql = "INSERT INTO users (nom, prenom, age, mot_de_passe) VALUES ('$username', '$prenom', '$age', '$password')";
-            if ($conn->query($sql) === TRUE) {
-               
-                
-                    echo '<div style="    width: 90%;max-width: 400px;margin: auto;text-align: center;width: 95%;max-width: 400px;margin: auto;text-align: center;background: transparent;border: 2px solid rgba(255 , 255 , 255 , -5);border-top-left-radius: 50px;border-bottom-right-radius: 50px;backdrop-filter: blur(30px);margin-top: 20vh;padding: 5%;" ><h1>Inscription success <span> &#x2713 </span></h1><a href="connexion.php"><button type="submit" style="background-color: #4481b7; cursor:pointer" class="btn">Click to connection</button><a/></div> ';  
-                
-                exit;
-            } else {
-                echo "Erreur lors de l'enregistrement des données : " . $conn->error;
-            }
+            echo "Erreur lors de l'inscription : " . $stmt->error;
         }
-
-        $conn->close();
     }
-}
-?>
 
-    <!DOCTYPE html>
+    $conn = null; // Fermeture de la connexion
+}
+
+?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Création de compte</title>
@@ -94,38 +49,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
     <link rel="stylesheet" href="inscription.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap-3.4.1-dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="bootstrap/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap/bootstrap-3.4.1-dist/js/jquery-3.7.0.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
+
 </head>
 <body>
-
-    
- <div class="login">
-<h2 class="p"  >Création de compte</h2>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <label for="username">Nom d'utilisateur:</label>
-    <input type="text" class="email"  name="username" id="username" value="<?php echo $username; ?>">
-    <span class="error"><?php echo $usernameErr; ?></span>
-    <br><br>
-    <label for="prenom">Prénom d'utilisateur:</label>
-    <input class="email"  type="text" name="prenom" id="prenom" value="<?php echo $prenom; ?>" required>
-    <span class="error"><?php echo $prenomErr; ?></span>
-    <br><br>
-    <label for="age">age</label>
-    <input class="email"  type="number" min='10' value="10" name="age" id="password">
-    <span class="error"><?php echo $passwordErr; ?></span>
-    <br><br>
-    <label for="password">Mot de passe:</label>
-    <input class="email"  type="password" name="password" id="password">
-    <span class="error"><?php echo $passwordErr; ?></span><br><br>
-    <label for="password">Comfirmé le Mot de passe:</label>
-    <input class="email"  type="password" name="confirmPassword" id="comfirmpassword">
-    <span class="error"><?php echo $confirmPasswordErr; ?></span>
-
-    <br><br>
-    <div class="option">
-            <a class="ins" href="connexion.php">Déja un compte ? Se connecter</a>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form form-dark bg-transparent">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">Création de compte</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="username">Nom d'utilisateur:</label>
+                            <input type="text" class="form-control" name="username" id="username" value="<?php echo $username; ?>">
+                            <span class="error"><?php echo $usernameErr; ?></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom d'utilisateur:</label>
+                            <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $prenom; ?>" required>
+                            <span class="error"><?php echo $prenomErr; ?></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Rôle:</label>
+                            <select class="form-control" name="role" id="role">
+                                <option value="locataire">Locataire</option>
+                                <option value="proprietaire">Propriétaire</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_inscription">Date d'inscription:</label>
+                            <input type="date" class="form-control" name="date_inscription" id="date_inscription">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mot de passe:</label>
+                            <input type="password" class="form-control" name="password" id="password">
+                            <span class="error"><?php echo $passwordErr; ?></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirmer le mot de passe:</label>
+                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                            <span class="error"><?php echo $confirmPasswordErr; ?></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Valider &#8594;</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <input class="connexion" type="submit" name="submit" value="Valider &#8594" />
+    </div>
 </form>
-</div>
+
 </body>
 </html>
