@@ -5,3 +5,15 @@ body {
     height: 100vh;
 
 }
+.card
+{
+    max-width: 100%;
+    width: auto;
+    margin: 16vh auto;
+    background: transparent;
+    border: 2px solid rgba(255 , 255 , 255 , -5);
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    backdrop-filter: blur(50px);
+
+}

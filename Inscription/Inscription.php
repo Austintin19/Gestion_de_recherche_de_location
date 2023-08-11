@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($stmt->execute()) {
             // Redirection vers la page de connexion après l'inscription réussie
-            header("Location: connexion.php");
+            header("Location: ../Connexion/connexion.php");
             exit();
         } else {
             echo "Erreur lors de l'inscription : " . $stmt->error;
@@ -49,57 +49,62 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     </style>
     <link rel="stylesheet" href="inscription.css">
-    <link rel="stylesheet" href="bootstrap/bootstrap-3.4.1-dist/css/bootstrap.min.css" crossorigin="anonymous">
-    <script src="bootstrap/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
-    <script src="bootstrap/bootstrap-3.4.1-dist/js/jquery-3.7.0.min.js"></script>
-    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="../bootstrap/bootstrap-3.4.1-dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="../bootstrap/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../bootstrap/bootstrap-3.4.1-dist/js/jquery-3.7.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
 
 </head>
 <body>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form form-dark bg-transparent">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card bg-transparent" style="margin-top: -3vh; margin-bottom: -3vh">
                     <div class="card-header">
-                        <h2 class="text-center">Création de compte</h2>
+                        <h2 class="text-center text-light">Création de compte</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="username">Nom d'utilisateur:</label>
+                            <label for="username" class="text-light">Nom </label>
                             <input type="text" class="form-control" name="username" id="username" value="<?php echo $username; ?>">
                             <span class="error"><?php echo $usernameErr; ?></span>
                         </div>
                         <div class="form-group">
-                            <label for="prenom">Prénom d'utilisateur:</label>
+                            <label for="prenom" class="text-light">Prénom</label>
                             <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $prenom; ?>" required>
                             <span class="error"><?php echo $prenomErr; ?></span>
                         </div>
                         <div class="form-group">
-                            <label for="role">Rôle:</label>
+                            <label for="prenom" class="text-light">Email</label>
+                            <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $prenom; ?>" required>
+                            <span class="error"><?php echo $prenomErr; ?></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="role" class="text-light">Rôle</label>
                             <select class="form-control" name="role" id="role">
                                 <option value="locataire">Locataire</option>
                                 <option value="proprietaire">Propriétaire</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="date_inscription">Date d'inscription:</label>
+                            <label for="date_inscription" class="text-light">Date d'inscription:</label>
                             <input type="date" class="form-control" name="date_inscription" id="date_inscription">
                         </div>
                         <div class="form-group">
-                            <label for="password">Mot de passe:</label>
+                            <label for="password" class="text-light">Mot de passe:</label>
                             <input type="password" class="form-control" name="password" id="password">
                             <span class="error"><?php echo $passwordErr; ?></span>
                         </div>
                         <div class="form-group">
-                            <label for="confirmPassword">Confirmer le mot de passe:</label>
+                            <label for="confirmPassword" class="text-light">Confirmer le mot de passe:</label>
                             <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
                             <span class="error"><?php echo $confirmPasswordErr; ?></span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Valider &#8594;</button>
+                        <div class="text-center m-3">
+                            <button type="submit" class="btn btn-primary">Valider &#8594;</button>
+                        </div>
                     </div>
                 </div>
             </div>

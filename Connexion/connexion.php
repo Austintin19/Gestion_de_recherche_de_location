@@ -1,10 +1,3 @@
-<?php
-global $prenom;
-ob_start(); // Démarre la mise en tampon de sortie
-  session_start(); // Démarre une session
-require('../Configs/config.php')
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,46 +13,38 @@ require('../Configs/config.php')
 </head>
 <body>
 <?php
+require('../Configs/config.php');
+global $prenom;
+global $conn;
+session_start(); // Demarrage de session
 
-// Définir les paramètres de connexion à la base de données
-$dsn = "mysql:host=localhost;dbname=gestion_recherche_location";
-$username = "root";
-$password = "";
+// Récupérer les valeurs soumises par le formulaire (assurez-vous d'avoir des valeurs POST valides)
+$submitted_username = $_POST['username'];
+$submitted_password = $_POST['password'];
+$submitted_prenom = $_POST['prenom'];
 
-// Créer une instance PDO
-$conn = new PDO($dsn, $username, $password);
-
-// Définir le mode d'erreur sur les exceptions
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-// Échapper les caractères spéciaux pour éviter les injections SQL
-$escaped_username = $conn->htmlspecialchars($username);
-$escaped_password = $conn->htmlspecialchars($password);
-$escaped_prenom = $conn->htmlspecialchars($prenom);
-
-// Vérifier les identifiants dans la base de données
-$sql = "SELECT * FROM users WHERE nom = :username AND mot_de_passe = :password AND prenom = :prenom";
+// Requête SQL pour vérifier les identifiants dans la base de données
+$sql = "SELECT * FROM utilisateurs WHERE nom = :username AND mot_de_passe = :password AND prenom = :prenom";
 $stmt = $conn->prepare($sql);
-$stmt->bindParam(':username', $escaped_username);
-$stmt->bindParam(':password', $escaped_password);
-$stmt->bindParam(':prenom', $escaped_prenom);
+$stmt->bindParam(':username', $submitted_username);
+$stmt->bindParam(':password', $submitted_password);
+$stmt->bindParam(':prenom', $submitted_prenom);
 $stmt->execute();
 
 // Si la requête a réussi, vérifier si l'utilisateur existe
 if ($stmt->rowCount() > 0) {
     // L'utilisateur existe, enregistrer les informations dans la session
-    $_SESSION['username'] = $username;
-    $_SESSION['password'] = $password;
-    $_SESSION['prenom'] = $prenom;
+    $_SESSION['username'] = $submitted_username;
+    $_SESSION['password'] = $submitted_password;
+    $_SESSION['prenom'] = $submitted_prenom;
 
     // Rediriger vers la page d'accueil
-    header("Location: ../");
+    header("Location: ../index.php");
     exit();
 } else {
     // L'utilisateur n'existe pas, afficher un message d'erreur
     $error_message = "Identifiants incorrects.";
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +79,7 @@ if ($stmt->rowCount() > 0) {
                       <input type="password" class="form-control" id="pass" name="password" placeholder="Mot de passe">
                   </div>
                   <div class="form-group mb-3 mt-3">
-                      <a href="Inscription.php" class="btn btn-secondary">Vous n'avez pas encore de compte? S'inscrire</a>
+                      <a href="../Inscription.php" class="btn btn-secondary">Vous n'avez pas encore de compte? S'inscrire</a>
                   </div>
                   <div class="form-group mb-3 text-center">
                     <button type="submit" class="btn btn-primary ">Connexion &rarr;</button>
