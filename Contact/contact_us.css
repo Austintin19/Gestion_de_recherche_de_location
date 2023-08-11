@@ -1,55 +1,36 @@
-.containing {
-    max-width: 600px;
+form {
+    width: 100%;
+    max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px #666;
+    border: 1px solid #ccc;
+    background-color: ;
+    margin-top: 30vh;
 }
 
-form label, form input[type="submit"] {
+label {
     display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
-form input[type="text"], form textarea {
+input, textarea {
     width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-    background-color: #f9f9f9;
-    box-shadow: inset 0px 0px 5px #ddd;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
 }
 
-form input[type="submit"] {
-    width: auto;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
+input[type="submit"] {
+    background-color: #000;
     color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
     border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
 }
 
-form input[type="submit"]:hover {
-    background-color: #38a048;
-}
-
-@media screen and (max-width: 600px) {
-    form label, form input[type="submit"] {
-        font-size: 16px;
-    }
-
-    form input[type="text"], form textarea {
-        font-size: 14px;
-    }
-
-    form input[type="submit"] {
-        padding: 8px 16px;
-    }
+body
+{
+    background: url("../image/vac.jpg")  ;
 }
