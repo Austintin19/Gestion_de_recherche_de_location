@@ -121,6 +121,11 @@ a:hover
         width: 100%;
         margin: auto;
     }
+    body
+    {
+       
+        background-size: 100vh;
+    }
 }
 input {
 
