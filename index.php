@@ -65,6 +65,12 @@
         .link:hover {
             color: #0b5ed7;
         }
+        .button-connexion {
+            position: relative;
+            top: 55vh;
+            left: 14%;
+
+        }
     </style>
 </head>
 <body>
@@ -102,7 +108,7 @@
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <form class="form-inline d-flex justify-content-between align-items-centerx">
+                        <form class="form-inline d-flex justify-content-between align-items-center">
                             <input class="form-control" type="search" placeholder="Rechercher une maison" aria-label="Rechercher">
                             <button class="btn btn-outline-light ms-4" type="submit">Rechercher</button>
                         </form>
@@ -158,6 +164,18 @@
                         <p class="h6">Un service de paiement sécurisé</p>
                     </div>
                 </div>
+                <div class="carousel-item container d-flex justify-content-around align-items-center button-connexion">
+                    <div class="form-group">
+                        <a href="Inscription/Inscription.php">
+                            <button class="btn btn-outline-light ms-4 fw-bold" type="submit">Inscription</button>
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <a href="Connexion/connexion.php">
+                            <button class="btn btn-outline-light ms-4 fw-bold" type="submit">Connexion</button>
+                        </a>
+                    </div>
+                </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -166,6 +184,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+
         </div>
     </section>
     <section class="py-5 gradient-bg" id="section1">

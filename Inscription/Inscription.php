@@ -66,42 +66,57 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <h2 class="text-center text-light">Création de compte</h2>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="username" class="text-light">Nom </label>
-                            <input type="text" class="form-control" name="username" id="username" value="<?php echo $username; ?>">
-                            <span class="error"><?php echo $usernameErr; ?></span>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-group">
+                                <label for="username" class="text-light">Nom </label>
+                                <input type="text" class="form-control" name="username" id="username" value="<?php echo $username; ?>">
+                                <span class="error"><?php echo $usernameErr; ?></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="prenom" class="text-light">Prénom</label>
+                                <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $prenom; ?>" required>
+                                <span class="error"><?php echo $prenomErr; ?></span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="prenom" class="text-light">Prénom</label>
-                            <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $prenom; ?>" required>
-                            <span class="error"><?php echo $prenomErr; ?></span>
-                        </div>
-                        <div class="form-group">
+                        <div class="form-group mb-4">
                             <label for="prenom" class="text-light">Email</label>
                             <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $prenom; ?>" required>
                             <span class="error"><?php echo $prenomErr; ?></span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-4">
                             <label for="role" class="text-light">Rôle</label>
                             <select class="form-control" name="role" id="role">
                                 <option value="locataire">Locataire</option>
                                 <option value="proprietaire">Propriétaire</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="date_inscription" class="text-light">Date d'inscription:</label>
+                        <div class="form-group mb-4">
+                            <label for="date_inscription" class="text-light">Date d'inscription</label>
                             <input type="date" class="form-control" name="date_inscription" id="date_inscription">
                         </div>
-                        <div class="form-group">
-                            <label for="password" class="text-light">Mot de passe:</label>
-                            <input type="password" class="form-control" name="password" id="password">
-                            <span class="error"><?php echo $passwordErr; ?></span>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-group">
+                                <label for="password" class="text-light">Mot de passe</label>
+                                <input type="password" class="form-control" name="password" id="password">
+                                <span class="error"><?php echo $passwordErr; ?></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword" class="text-light">Confirmer le mot de <passe></passe></label>
+                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                                <span class="error"><?php echo $confirmPasswordErr; ?></span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="confirmPassword" class="text-light">Confirmer le mot de passe:</label>
-                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
-                            <span class="error"><?php echo $confirmPasswordErr; ?></span>
+
+                        <div class="form-group mb-4 text-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkboxAgree" required>
+                                <label class="form-check-label text-light" for="checkboxAgree">
+                                    J'accepte les <a href="../Condition.html" class="link-primary">Conditions Générales d'Utilisation </a>
+                                </label>
+                            </div>
                         </div>
+
                         <div class="text-center m-3">
                             <button type="submit" class="btn btn-primary">Valider &#8594;</button>
                         </div>
