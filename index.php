@@ -1,9 +1,3 @@
-<?php
- if (isset($_GET['$m']) AND isset($_GET['$image'])) {
-  echo $_GET['$m'];
-  echo $_GET['$image'];
-}
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -68,7 +62,6 @@
         .button-connexion {
             position: relative;
             top: 55vh;
-            left: 14%;
 
         }
     </style>
@@ -164,7 +157,7 @@
                         <p class="h6">Un service de paiement sécurisé</p>
                     </div>
                 </div>
-                <div class="carousel-item container d-flex justify-content-around align-items-center button-connexion">
+                <div class="container d-flex justify-content-around align-items-center button-connexion">
                     <div class="form-group">
                         <a href="Inscription/Inscription.php">
                             <button class="btn btn-outline-light ms-4 fw-bold" type="submit">Inscription</button>

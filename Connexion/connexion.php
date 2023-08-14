@@ -14,16 +14,14 @@ try {
 session_start();
 
 // Récupérer les valeurs soumises par le formulaire
-$submitted_username = $_POST['username'];
+$submitted_email = $_POST['email'];
 $submitted_password = $_POST['password'];
-$submitted_prenom = $_POST['prenom'];
 
 // Requête SQL pour vérifier les identifiants dans la base de données
-$sql = "SELECT * FROM utilisateurs WHERE nom = :username AND mot_de_passe = :password AND prenom = :prenom";
+$sql = "SELECT * FROM utilisateurs WHERE email = :email AND mot_de_passe = :password";
 $stmt = $conn->prepare($sql);
-$stmt->bindParam(':username', $submitted_username);
+$stmt->bindParam(':email', $submitted_email);
 $stmt->bindParam(':password', $submitted_password);
-$stmt->bindParam(':prenom', $submitted_prenom);
 $stmt->execute();
 
 // Si la requête a réussi, vérifier si l'utilisateur existe
@@ -36,7 +34,7 @@ if ($stmt->rowCount() > 0) {
     $_SESSION['prenom'] = $user['prenom'];
 
     // Rediriger vers la page d'accueil
-    header("Location: ");
+    header('Location: ../dashboard.php?user='.$_SESSION['username'].'&last='.$_SESSION['prenom']);
     exit();
 } else {
     // L'utilisateur n'existe pas, afficher un message d'erreur
@@ -59,18 +57,14 @@ if ($stmt->rowCount() > 0) {
       <div class="row justify-content-center">
           <div class="col-md-4">
               <h2 class="text-center text-light">Connexion</h2>
-              <form action="#" method="POST" enctype="multipart/form-data">
+              <form action="connexion.php" method="POST" enctype="multipart/form-data">
                   <div class="form-group mb-3">
-                      <label for="name" class="form-label text-light">Nom</label>
-                      <input type="text" class="form-control" id="name" name="username" placeholder="Nom d'utilisateur">
-                  </div>
-                  <div class="form-group mb-3">
-                      <label for="prenom" class="form-label text-light">Prénom</label>
-                      <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom d'utilisateur">
+                      <label for="email" class="form-label text-light">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Votre email">
                   </div>
                   <div class="form-group mb-3">
                       <label for="pass" class="form-label text-light">Mot de passe</label>
-                      <input type="password" class="form-control" id="pass" name="password" placeholder="Mot de passe">
+                      <input type="password" class="form-control" id="pass" name="password" placeholder=" Votre mot de passe">
                   </div>
                   <div class="form-group mb-3 mt-3">
                       <a href="../Inscription/Inscription.php" class="btn btn-secondary">Vous n'avez pas encore de compte? S'inscrire</a>
