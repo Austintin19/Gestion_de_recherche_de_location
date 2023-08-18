@@ -34,7 +34,7 @@ if ($stmt->rowCount() > 0) {
     $_SESSION['prenom'] = $user['prenom'];
 
     // Rediriger vers la page d'accueil
-    header('Location: ../dashboard.php?user='.$_SESSION['username'].'&last='.$_SESSION['prenom']);
+    header('Location: ../dashboard_prop.php?user='.$_SESSION['username'].'&last='.$_SESSION['prenom']);
     exit();
 } else {
     // L'utilisateur n'existe pas, afficher un message d'erreur
